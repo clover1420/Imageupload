@@ -63,8 +63,31 @@ def upload(location,imgpath,name):
             }
             zz = requests.post(url=url,files=file,headers=head).json()
             return zz['url']
-        #qq图床-5MB
+        #一加论坛-10MB
         case 5:
+            url = "https://www.oneplusbbs.com/misc.php?mod=swfupload&operation=uploadimg&simple=1&type=image"
+            head = {
+                "user-agent":config.ua,
+                "cookie":config.qdyd_cookie
+            }
+            file ={
+                "Filedata": (name, open(imgpath, "rb"), "image/png"),
+                "uid": (None,"3437606"),
+                "hash": (None,"5e9cafdd8723d52408218f2bde4339d6")
+            }
+            data = {
+                "mod": "swfupload",
+                "operation": "uploadimg",
+                "simple": 1,
+                "type": "image"
+            }
+            zz = requests.post(url=url,data=data,files=file,headers=head).json()
+            if zz['code'] == 200:
+                return zz['link']
+            else:
+                return zz['msg']
+        #qq图床-5MB
+        case 6:
             url = "https://pic.ihcloud.net/api2/qq.php"
             head = {
                 "referer": "https://pic.ihcloud.net",
@@ -77,7 +100,7 @@ def upload(location,imgpath,name):
             zz = requests.post(url=url,files=file,headers=head).json()
             return zz["data"]["url"]
         #遇见图床-葫芦侠接口-5MB
-        case 6:
+        case 7:
             url = "https://www.hualigs.cn/api/upload"
             head = {
                 "user-agent":config.ua
@@ -90,7 +113,7 @@ def upload(location,imgpath,name):
             zz = requests.post(url=url,files=file,headers=head).json()
             return zz['data']['url']['huluxia']
         #cnmo论坛-5MB
-        case 7:
+        case 8:
             url = "https://bbs.cnmo.com/index.php?c=Api_Attachment&m=UploadImageNew"
             head = {
                 "user-agent":config.ua
@@ -102,7 +125,7 @@ def upload(location,imgpath,name):
             zz = requests.post(url=url,files=file,headers=head).json()
             return zz['data']['url']
         #起点阅读图床-2MB
-        case 8:
+        case 9:
             url = "https://my.qidian.com/ajax/headimage/uploadimg"
             head = {
                 "user-agent":config.ua,

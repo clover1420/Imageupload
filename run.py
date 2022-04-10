@@ -18,7 +18,7 @@ def locations(imgsize):
         return 0
 
 def run():
-    aa = ["bilibili","网易严选","搜狗","美团","今日头条","qq","葫芦侠","cnmo论坛","起点阅读"]
+    aa = ["bilibili","网易严选","搜狗","美团","今日头条","一加论坛","qq","葫芦侠","cnmo论坛","起点阅读"]
     filepath = os.getcwd()+"\\pic"
     for i,j,k in os.walk(filepath):
         for j in k:
