@@ -1,4 +1,5 @@
-import os,api,random
+import os,api,random,config
+
 
 #获取图片大小
 def size(filePath):
@@ -28,5 +29,9 @@ def run():
             imgsize = size(imgpath)
             location = locations(imgsize)
             img_location = aa[location]
-            data = api.upload(5,imgpath,j)
-            print(f"{name}-上传成功--上传位置:{img_location}")
+            if config.up_location == None:
+                data = api.upload(location,imgpath,j)
+                print(f"{name}-上传成功:{data}--上传位置:{img_location}")
+            else:
+                data = api.upload(config.up_location,imgpath,j)
+                print(f"{name}-上传成功:{data}--上传位置:{aa[config.up_location]}")

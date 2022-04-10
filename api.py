@@ -1,4 +1,4 @@
-import requests,json,cookie
+import requests,json,config
 from bs4 import BeautifulSoup
 
 def upload(location,imgpath,name):
@@ -8,7 +8,7 @@ def upload(location,imgpath,name):
             url = "https://api.vc.bilibili.com/api/v1/drawImage/upload"
             head = {
                 "User-Agent": "bilibili",
-                "Cookie": cookie.bilibili_cookie
+                "Cookie":config.bilibili_cookie
             }
             file ={
                 "file_up": (name, open(imgpath, "rb"), "image/png"),
@@ -22,7 +22,7 @@ def upload(location,imgpath,name):
             url = "http://you.163.com/xhr/file/upload.json"
             head = {
                 "user-agent": "",
-                "cookie": cookie.wyyx_cookie
+                "cookie":config.wyyx_cookie
             }
             file ={
                 "file": (name, open(imgpath, "rb"), "image/png")
@@ -33,7 +33,7 @@ def upload(location,imgpath,name):
         case 2:
             url = "https://api.kinh.cc/Picture/SoGou.php"
             head = {
-                "user-agent": cookie.ua
+                "user-agent":config.ua
             }
             file ={
                 "FilePicture": (name, open(imgpath, "rb"), "image/png")
@@ -44,7 +44,7 @@ def upload(location,imgpath,name):
         case 3:
             url = "https://api.kinh.cc/Picture/MeiTuan.php"
             head = {
-                "user-agent": cookie.ua
+                "user-agent":config.ua
             }
             file ={
                 "FilePicture": (name, open(imgpath, "rb"), "image/png")
@@ -55,8 +55,8 @@ def upload(location,imgpath,name):
         case 4:
             url = "https://mp.toutiao.com/mp/agw/article_material/photo/upload_picture?type=ueditor&pgc_watermark=0&action=uploadimage&encode=utf-8&is_private=1"
             head = {
-                "user-agent": cookie.ua,
-                "cookie": cookie.jrtt_cookie
+                "user-agent":config.ua,
+                "cookie":config.jrtt_cookie
             }
             file ={
                 "upfile": (name, open(imgpath, "rb"), "image/png")
@@ -68,7 +68,7 @@ def upload(location,imgpath,name):
             url = "https://pic.ihcloud.net/api2/qq.php"
             head = {
                 "referer": "https://pic.ihcloud.net",
-                "user-agent": cookie.ua
+                "user-agent":config.ua
             }
             file ={
                 "image": (name, open(imgpath, "rb"), "image/png"),
@@ -80,7 +80,7 @@ def upload(location,imgpath,name):
         case 6:
             url = "https://www.hualigs.cn/api/upload"
             head = {
-                "user-agent": cookie.ua
+                "user-agent":config.ua
             }
             file ={
                 "image": (name, open(imgpath, "rb"), "image/png"),
@@ -93,7 +93,7 @@ def upload(location,imgpath,name):
         case 7:
             url = "https://bbs.cnmo.com/index.php?c=Api_Attachment&m=UploadImageNew"
             head = {
-                "user-agent": cookie.ua
+                "user-agent":config.ua
             }
             file ={
                 "img": (name, open(imgpath, "rb"), "image/png"),
@@ -105,8 +105,8 @@ def upload(location,imgpath,name):
         case 8:
             url = "https://my.qidian.com/ajax/headimage/uploadimg"
             head = {
-                "user-agent": cookie.ua,
-                "cookie": cookie.qdyd_cookie
+                "user-agent":config.ua,
+                "cookie":config.qdyd_cookie
             }
             file ={
                 "image": (name, open(imgpath, "rb"), "image/png")
