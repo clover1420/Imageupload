@@ -5,7 +5,7 @@ ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 # 填入要上传位置的索引，如要上传到美团填3
 # None 随机上传
 # 改成了 Array 类型，可以添加多个位置
-up_location = [None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+up_location = [0,1,2,3,4,5,6,7,8,9]
 
 # bilibili cookie
 bilibili_cookie = ""
@@ -15,3 +15,5 @@ jrtt_cookie = ""
 wyyx_cookie = ""
 # 起点阅读cookie
 qdyd_cookie = ""
+#遇见图床token
+yjtc_token = ""

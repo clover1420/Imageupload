@@ -24,7 +24,6 @@ def locations(imgsize):
 
 
 def run():
-    aa = ["bilibili", "网易严选", "搜狗", "美团", "今日头条", "一加论坛", "qq", "葫芦侠", "cnmo论坛", "起点阅读"]
     # 获取当前系统
     if platform.system() == "Windows":
         sep = "\\"
@@ -39,11 +38,8 @@ def run():
             name = j[:-4]
             imgsize = size(imgpath)
             location = locations(imgsize)
-            img_location = aa[location]
             for i in config.up_location:
                 if i == None:
-                    data = api.upload(location, imgpath, j)
-                    print(f"{name}-上传成功:{data} --上传位置:{img_location}")
+                    api.upload(location, imgpath, j)
                 else:
-                    data = api.upload(i, imgpath, j)
-                    print(f"{name}-上传成功:{data} --上传位置:{aa[i]}")
+                    api.upload(i, imgpath, j) 
