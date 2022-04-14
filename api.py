@@ -1,4 +1,3 @@
-from http.cookiejar import Cookie
 import config
 import json
 import requests
