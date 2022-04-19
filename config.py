@@ -5,7 +5,8 @@ ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 # 填入要上传位置的索引，如要上传到美团填3
 # None 随机上传
 # 改成了 Array 类型，可以添加多个位置
-up_location = [0,1,2,3,4,5,6,7,8,9]
+#["bilibili", "网易严选", "搜狗", "美团", "今日头条", "一加论坛", "qq", "葫芦侠", "cnmo论坛", "起点阅读"]
+up_location = [None]
 
 # bilibili cookie
 bilibili_cookie = ""

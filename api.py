@@ -5,10 +5,9 @@ from bs4 import BeautifulSoup
 
 
 def upload(location, imgpath, name):
-    aa = ["bilibili", "网易严选", "搜狗", "美团", "今日头条", "一加论坛", "qq", "葫芦侠", "cnmo论坛", "起点阅读"]
     try:
         # bilibili图床-20MB
-        if location == 0:
+        if location == "bilibili":
             if config.bilibili_cookie != "":
                 url = "https://api.vc.bilibili.com/api/v1/drawImage/upload"
                 head = {
@@ -21,12 +20,12 @@ def upload(location, imgpath, name):
                     "category": (None, "daily")
                 }
                 zz = requests.post(url=url, files=file, headers=head).json()["data"]["image_url"]
-                print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+                print(f"{name}-上传成功: {zz} --上传位置:{location}")
             else:
                 print("bilibili上传需要cookie")
 
         # 网易严选图床-10MB
-        if location == 1:
+        if location == "网易严选":
             if config.wyyx_cookie != "":
                 url = "http://you.163.com/xhr/file/upload.json"
                 head = {
@@ -37,12 +36,12 @@ def upload(location, imgpath, name):
                     "file": (name, open(imgpath, "rb"), "image/png")
                 }
                 zz = requests.post(url=url, files=file, headers=head).json()["data"][0]
-                print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+                print(f"{name}-上传成功: {zz} --上传位置:{location}")
             else:
                 print("网易严选上传需要cookie")
 
-        # 搜狗图床-10MB
-        if location == 2:
+        # 搜狗图床-10MB 搜狗图片不会永久保存
+        if location == "搜狗":
             url = "https://api.kinh.cc/Picture/SoGou.php"
             head = {
                 "user-agent": config.ua
@@ -51,10 +50,10 @@ def upload(location, imgpath, name):
                 "FilePicture": (name, open(imgpath, "rb"), "image/png")
             }
             zz = requests.post(url=url, files=file, headers=head).json()['link']
-            print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+            print(f"{name}-上传成功: {zz} --上传位置:{location}")
 
         # 美团图床-10MB
-        if location == 3:
+        if location == "美团":
             url = "https://api.kinh.cc/Picture/MeiTuan.php"
             head = {
                 "user-agent": config.ua
@@ -63,10 +62,10 @@ def upload(location, imgpath, name):
                 "FilePicture": (name, open(imgpath, "rb"), "image/png")
             }
             zz = requests.post(url=url, files=file, headers=head).json()['link']
-            print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+            print(f"{name}-上传成功: {zz} --上传位置:{location}")
 
         # 今日头条-10MB
-        if location == 4:
+        if location == "今日头条":
             if config.jrtt_cookie != "":
                 url = "https://mp.toutiao.com/mp/agw/article_material/photo/upload_picture?type=ueditor&pgc_watermark=0&action=uploadimage&encode=utf-8&is_private=1"
                 head = {
@@ -77,12 +76,12 @@ def upload(location, imgpath, name):
                     "upfile": (name, open(imgpath, "rb"), "image/png")
                 }
                 zz = requests.post(url=url, files=file, headers=head).json()['url']
-                print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+                print(f"{name}-上传成功: {zz} --上传位置:{location}")
             else:
                 print("今日头条上传需要cookie")
 
         # 一加论坛-10MB
-        if location == 5:
+        if location == "一加论坛":
             url = "https://www.oneplusbbs.com/misc.php?mod=swfupload&operation=uploadimg&simple=1&type=image"
             head = {
                 "user-agent": config.ua
@@ -100,12 +99,12 @@ def upload(location, imgpath, name):
             }
             zz = requests.post(url=url, data=data, files=file, headers=head).json()
             if zz['code'] == 200:
-                print(f"{name}-上传成功: {zz['link']} --上传位置:{aa[location]}")
+                print(f"{name}-上传成功: {zz['link']} --上传位置:{location}")
             else:
                 print(f"一加论坛上传失败:{zz['msg']}")
 
         # qq图床-5MB
-        if location == 6:
+        if location == "qq":
             url = "https://pic.ihcloud.net/api2/qq.php"
             head = {
                 "referer": "https://pic.ihcloud.net",
@@ -116,10 +115,10 @@ def upload(location, imgpath, name):
                 "file_id": (None, "0")
             }
             zz = requests.post(url=url, files=file, headers=head).json()["data"]["url"]
-            print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+            print(f"{name}-上传成功: {zz} --上传位置:{location}")
 
         # 遇见图床-葫芦侠接口-5MB
-        if location == 7:
+        if location == "葫芦侠":
             if config.yjtc_token != "":
                 url = "https://www.hualigs.cn/api/upload"
                 head = {
@@ -131,12 +130,12 @@ def upload(location, imgpath, name):
                     "apiType": (None, "huluxia")
                 }
                 zz = requests.post(url=url, files=file, headers=head).json()['data']['url']['huluxia']
-                print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+                print(f"{name}-上传成功: {zz} --上传位置:{location}")
             else:
                 print("遇见图床-葫芦侠上传需要token")
 
         # cnmo论坛-5MB
-        if location == 8:
+        if location == "cnmo论坛":
             url = "https://bbs.cnmo.com/index.php?c=Api_Attachment&m=UploadImageNew"
             head = {
                 "user-agent": config.ua
@@ -146,10 +145,10 @@ def upload(location, imgpath, name):
                 "uid": (None, "12273065")
             }
             zz = requests.post(url=url, files=file, headers=head).json()['data']['url']
-            print(f"{name}-上传成功: {zz} --上传位置:{aa[location]}")
+            print(f"{name}-上传成功: {zz} --上传位置:{location}")
 
         # 起点阅读图床-2MB
-        if location == 9:
+        if location == "起点阅读":
             if config.qdyd_cookie != "":
                 print(9)
                 url = "https://my.qidian.com/ajax/headimage/uploadimg"
@@ -167,7 +166,7 @@ def upload(location, imgpath, name):
                     print("起点阅读cookie可能已过期，请更新cookie")
                 else:
                     data = json.loads(img)["data"]["url"]
-                    print(f"{name}-上传成功: https:{data} --上传位置:{aa[location]}")
+                    print(f"{name}-上传成功: https:{data} --上传位置:{location}")
             else:
                 print("起点阅读上传需要cookie")
 

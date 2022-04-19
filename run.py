@@ -13,17 +13,19 @@ def size(filePath):
 
 
 def locations(imgsize):
+    aa = ["bilibili", "网易严选", "搜狗", "美团", "今日头条", "一加论坛", "qq", "葫芦侠", "cnmo论坛", "起点阅读"]
     if imgsize < 2:
-        return random.randint(0, 8)
+        return aa[random.randint(0, len(aa))] 
     elif imgsize < 5:
-        return random.randint(0, 7)
+        return aa[random.randint(0, len(aa)-1)]
     elif imgsize < 10:
-        return random.randint(0, 4)
+        return aa[random.randint(0, len(aa)-4)]
     else:
         return 0
 
 
 def run():
+    
     # 获取当前系统
     if platform.system() == "Windows":
         sep = "\\"
